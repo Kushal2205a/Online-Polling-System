@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aesthetic Polling App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   
+    <div class="app">
+        
+        <header class="header">
+            <div class="container">
+                <h1 class="header__title">Aesthetic Polling</h1>
+                <p class="header__subtitle">Create and join beautiful polls instantly</p>
+            </div>
+        </header>
+
+        
+        <main class="main">
+            <div class="container">
+                
+                <div class="screen screen--active" id="homeScreen">
+                    <div class="home">
+                        <div class="home__content">
+                            <h2 class="home__title">Polling Application - Remedial Project</h2>
+                            
+                            <div class="home__actions">
+                                <button class="btn btn--primary btn--large" id="createPollBtn">
+                                    <span class="btn__icon">✏️</span>
+                                    Create New Poll
+                                </button>
+                                <button class="btn btn--secondary btn--large" id="joinPollBtn">
+                                    <span class="btn__icon">🔗</span>
+                                    Join Existing Poll
+                                </button>
+                                <button class="btn btn--outline btn--large" id="demoPollBtn">
+                                    <span class="btn__icon">🎯</span>
+                                    Try Demo Poll
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="screen" id="createScreen">
+                    <div class="create-poll">
+                        <div class="create-poll__header">
+                            <h2 class="create-poll__title">Create New Poll</h2>
+                            <button class="btn btn--back" id="backFromCreate">← Back</button>
+                        </div>
+
+                        <form class="create-form" id="createForm">
+                            <div class="form-group">
+                                <label class="form-label" for="pollQuestion">Poll Question</label>
+                                <input 
+                                    type="text" 
+                                    id="pollQuestion" 
+                                    class="form-control" 
+                                    placeholder="What's your question?"
+                                    required
+                                    maxlength="200"
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Poll Options</label>
+                                <div class="options-container" id="optionsContainer">
+                                    <div class="option-input">
+                                        <input type="text" class="form-control" placeholder="Option 1" required maxlength="100">
+                                        <button type="button" class="btn btn--remove" disabled>×</button>
+                                    </div>
+                                    <div class="option-input">
+                                        <input type="text" class="form-control" placeholder="Option 2" required maxlength="100">
+                                        <button type="button" class="btn btn--remove" disabled>×</button>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn--outline btn--sm" id="addOption">+ Add Option</button>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <input type="checkbox" id="allowMultiple" class="checkbox"> 
+                                    Allow multiple selections
+                                </label>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn--primary btn--large">Create Poll</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                
+                <div class="screen" id="joinScreen">
+                    <div class="join-poll">
+                        <div class="join-poll__header">
+                            <h2 class="join-poll__title">Join Poll</h2>
+                            <button class="btn btn--back" id="backFromJoin">← Back</button>
+                        </div>
+
+                        <form class="join-form" id="joinForm">
+                            <div class="form-group">
+                                <label class="form-label" for="pollId">Enter Poll ID</label>
+                                <input 
+                                    type="text" 
+                                    id="pollId" 
+                                    class="form-control form-control--large" 
+                                    placeholder="e.g., DEMO123"
+                                    required
+                                    maxlength="20"
+                                >
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn--primary btn--large">Join Poll</button>
+                            </div>
+                        </form>
+
+                        <div class="demo-hint">
+                            <p class="demo-hint__text">Try the demo poll ID: <strong>DEMO123</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="screen" id="successScreen">
+                    <div class="poll-success">
+                        <div class="poll-success__content">
+                            <div class="poll-success__icon">✅</div>
+                            <h2 class="poll-success__title">Poll Created Successfully!</h2>
+                            <div class="poll-id-display">
+                                <p class="poll-id-display__label">Your Poll ID:</p>
+                                <div class="poll-id-display__id" id="generatedPollId">POLL123</div>
+                                <button class="btn btn--outline btn--sm" id="copyPollId">Copy ID</button>
+                            </div>
+                            <p class="poll-success__description">Share this ID with others so they can vote!</p>
+                            <div class="poll-success__actions">
+                                <button class="btn btn--primary" id="viewMyPoll">View Poll</button>
+                                <button class="btn btn--secondary" id="createAnother">Create Another</button>
+                                <button class="btn btn--outline" id="backToHome">Back to Home</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="screen" id="votingScreen">
+                    <div class="voting">
+                        <div class="voting__header">
+                            <button class="btn btn--back" id="backFromVoting">← Back</button>
+                            <div class="poll-id-badge" id="currentPollId">POLL123</div>
+                        </div>
+
+                        <div class="voting__content">
+                            <h2 class="voting__question" id="votingQuestion">What's your favorite programming language?</h2>
+                            
+                            <form class="voting-form" id="votingForm">
+                                <div class="voting-options" id="votingOptions">
+                                    
+                                </div>
+                                
+                                <div class="voting-actions">
+                                    <button type="submit" class="btn btn--primary btn--large" id="submitVote">Submit Vote</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="screen" id="resultsScreen">
+                    <div class="results">
+                        <div class="results__header">
+                            <h2 class="results__title">Poll Results</h2>
+                            <div class="poll-id-badge" id="resultsPollId">POLL123</div>
+                        </div>
+
+                        <div class="results__content">
+                            <h3 class="results__question" id="resultsQuestion">What's your favorite programming language?</h3>
+                            
+                            <div class="results__stats">
+                                <span class="results__total" id="totalVotes">80 votes</span>
+                            </div>
+
+                            <div class="results__chart" id="resultsChart">
+                                
+                            </div>
+
+                            <div class="results__actions">
+                                <button class="btn btn--primary" id="voteAgain">Vote Again</button>
+                                <button class="btn btn--secondary" id="newPoll">Create New Poll</button>
+                                <button class="btn btn--outline" id="shareResults">Share Results</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        
+        <footer class="footer">
+            <div class="container">
+                <p class="footer__text">Polling Application </p>
+            </div>
+        </footer>
+    </div>
+
+    <div class="notifications" id="notifications"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
