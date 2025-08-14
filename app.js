@@ -669,3 +669,6 @@ function initializeApp() {
     }
 }
 
+
+initializeApp();
+
