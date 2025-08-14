@@ -1,5 +1,3 @@
-// Aesthetic Polling App JavaScript - Fixed Version
-
 class PollingApp {
     constructor() {
         // Application state
